@@ -1,0 +1,129 @@
+{
+  "features": [
+    {
+      "label": "Klimatyzacja",
+      "name": "airConditioner",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Cyfrowy licznik przebiegu",
+      "name": "digitalOdometer",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Ogrzewanie",
+      "name": "heater",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Skórzana tapicerka",
+      "name": "leatherSeats",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Panoramiczny dach",
+      "name": "panoramicMoonroof",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Obrotomierz",
+      "name": "tachometer",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Ekran dotykowy",
+      "name": "touchscreenDisplay",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "System ABS",
+      "name": "antiLockBraking",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Asystent hamowania",
+      "name": "brakeAssist",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Blokada drzwi dla dzieci",
+      "name": "childSafetyLocks",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Poduszka powietrzna kierowcy",
+      "name": "driverAirBag",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Centralny zamek",
+      "name": "powerDoorLocks",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Kontrola stabilności toru jazdy",
+      "name": "stabilityControl",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Kontrola trakcji",
+      "name": "tractionControl",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Przednie światła przeciwmgielne",
+      "name": "fogLightsFront",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Czujnik deszczu",
+      "name": "rainSensingWiper",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Tylny spojler",
+      "name": "rearSpoiler",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Elektryczne szyby",
+      "name": "windowsElectric",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Komfort i wygoda",
+      "name": "comfortConvenience",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Android Auto",
+      "name": "androidAuto",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Apple CarPlay",
+      "name": "appleCarPlay",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Bluetooth",
+      "name": "bluetooth",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "HomeLink",
+      "name": "homeLink",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Wspomaganie kierownicy",
+      "name": "powerSteering",
+      "fieldType": "checkbox"
+    },
+    {
+      "label": "Lusterko w osłonie przeciwsłonecznej",
+      "name": "vanityMirror",
+      "fieldType": "checkbox"
+    }
+  ]
+}
