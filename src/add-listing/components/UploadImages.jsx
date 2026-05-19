@@ -69,14 +69,14 @@ function UploadImages({
     }),
     useSensor(TouchSensor, {
       activationConstraint: { delay: 200, tolerance: 5 },
-    })
+    }),
   );
 
   /* ================= INIT ================= */
   useEffect(() => {
     if (mode === "edit" && carInfo?.images) {
       const sorted = [...carInfo.images].sort(
-        (a, b) => (a.order ?? 0) - (b.order ?? 0)
+        (a, b) => (a.order ?? 0) - (b.order ?? 0),
       );
       setEditImages(sorted);
     }
@@ -172,7 +172,7 @@ function UploadImages({
     }
   };
 
-  /* ================= DND HANDLER ================= */
+  /* =================  HANDLER ================= */
   const onDragEndEdit = ({ active, over }) => {
     if (!over || active.id === over.id) return;
 
@@ -291,7 +291,8 @@ function UploadImages({
       </div>
 
       <p className="text-xs text-gray-500 mt-2">
-        Drag images to change order. First image is the main photo.
+        Przeciągnij obrazy, aby zmienić kolejność. Pierwszy obraz jest zdjęciem
+        głównym.
       </p>
     </div>
   );

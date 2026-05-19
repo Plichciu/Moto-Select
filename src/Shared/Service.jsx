@@ -3,10 +3,6 @@ import features from "./../Shared/features.json";
 const SendBirdApplicationId = import.meta.env.VITE_SENDBIRD_APP_ID;
 const SendBirdApiToken = import.meta.env.VITE_SENDBIRD_API_TOKEN;
 
-/* =====================================================
-   FORMAT RESULT (🔥 KLUCZOWE DLA ZDJĘĆ GŁÓWNYCH)
-===================================================== */
-
 const FormatResult = (resp) => {
   const grouped = {};
   const finalResult = [];
@@ -32,9 +28,8 @@ const FormatResult = (resp) => {
   });
 
   Object.values(grouped).forEach((item) => {
-    // 🔥 SORTOWANIE PO ORDER (MAIN PHOTO ZAWSZE PIERWSZE)
     const sortedImages = item.images.sort(
-      (a, b) => (a.order ?? 0) - (b.order ?? 0)
+      (a, b) => (a.order ?? 0) - (b.order ?? 0),
     );
 
     finalResult.push({
@@ -50,26 +45,75 @@ const FormatResult = (resp) => {
    SENDBIRD
 ===================================================== */
 
-const CreateSendBirdUser = (userId, nickName, profileUrl) => {
-  return axios.post(
-    `https://api-${SendBirdApplicationId}.sendbird.com/v3/users`,
-    {
-      user_id: userId,
-      nickname: nickName,
-      profile_url: profileUrl,
-      issue_access_token: false,
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        "Api-Token": SendBirdApiToken,
+// const CreateSendBirdUser = (userId, nickName, profileUrl) => {
+//   return axios.post(
+//     `https://api-${SendBirdApplicationId}.sendbird.com/v3/users`,
+//     {
+//       user_id: userId,
+//       nickname: nickName,
+//       profile_url: profileUrl,
+//       issue_access_token: false,
+//     },
+//     {
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Api-Token": SendBirdApiToken,
+//       },
+//     }
+//   );
+// };
+
+// const CreateSendBirdChannel = (users, title) => {
+//   return axios.post(
+//     `https://api-${SendBirdApplicationId}.sendbird.com/v3/group_channels`,
+//     {
+//       user_ids: users,
+//       is_distinct: true,
+//       name: title,
+//       operator_ids: [users[0]],
+//     },
+//     {
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Api-Token": SendBirdApiToken,
+//       },
+//     }
+//   );
+// };
+
+const CreateSendBirdUser = async (userId, nickName, profileUrl) => {
+  try {
+    const response = await axios.post(
+      `https://api-${SendBirdApplicationId}.sendbird.com/v3/users`,
+      {
+        user_id: userId,
+        nickname: nickName,
+        profile_url: profileUrl,
+        issue_access_token: false,
       },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Api-Token": SendBirdApiToken,
+        },
+      },
+    );
+
+    return response.data;
+  } catch (e) {
+    // User już istnieje
+    if (e?.response?.data?.message?.includes("violates unique constraint")) {
+      console.log("User już istnieje");
+
+      return null;
     }
-  );
+
+    throw e;
+  }
 };
 
-const CreateSendBirdChannel = (users, title) => {
-  return axios.post(
+const CreateSendBirdChannel = async (users, title) => {
+  const response = await axios.post(
     `https://api-${SendBirdApplicationId}.sendbird.com/v3/group_channels`,
     {
       user_ids: users,
@@ -82,18 +126,16 @@ const CreateSendBirdChannel = (users, title) => {
         "Content-Type": "application/json",
         "Api-Token": SendBirdApiToken,
       },
-    }
+    },
   );
+
+  return response.data;
 };
 
 export const featureLabelMap = features.features.reduce((acc, item) => {
   acc[item.name] = item.label;
   return acc;
 }, {});
-
-/* =====================================================
-   EXPORT
-===================================================== */
 
 export default {
   FormatResult,

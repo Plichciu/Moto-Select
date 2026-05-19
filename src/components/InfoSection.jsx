@@ -11,7 +11,7 @@ function InfoSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 4000); // 4 sekundy
+    }, 4000); 
 
     return () => clearInterval(interval);
   }, []);

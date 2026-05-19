@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/clerk-react";
+import { SignInButton, useUser } from "@clerk/clerk-react";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 function RequireAuth({ children }) {
   const { user, isLoaded } = useUser();
 
-  // ⏳ Clerk jeszcze się ładuje
   if (!isLoaded) {
     return (
       <div>
@@ -18,7 +17,6 @@ function RequireAuth({ children }) {
     );
   }
 
-  // ❌ NIEZALOGOWANY
   if (!user) {
     return (
       <div>
@@ -29,9 +27,9 @@ function RequireAuth({ children }) {
             Musisz być zalogowany, żeby uzyskać dostęp do tej strony.
           </p>
 
-          <Link to="/sign-in">
-            <Button size="lg">Rejestracja</Button>
-          </Link>
+          <SignInButton mode="modal">
+            <Button>Rejestra/Logowanie</Button>
+          </SignInButton>
         </div>
       </div>
     );

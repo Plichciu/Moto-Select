@@ -5,8 +5,12 @@ import { useUser } from "@clerk/clerk-react";
 import { GroupChannel } from "@sendbird/uikit-react/GroupChannel";
 import { GroupChannelList } from "@sendbird/uikit-react/GroupChannelList";
 
-
 function Inbox() {
+  const [stringSet] = useState({
+   
+    MESSAGE_INPUT__PLACE_HOLDER: "Napisz wiadomość...",
+  });
+
   const { user } = useUser();
   const [userId, setUserId] = useState();
   const [channelUrl, setChannelUrl] = useState();
@@ -26,6 +30,7 @@ function Inbox() {
             nickname={user?.fullName}
             profileUrl={user?.imageUrl}
             allowProfileEdit={true}
+            stringSet={stringSet}
           >
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3 h-full">
               <div className="p-5 border shadow-lg">

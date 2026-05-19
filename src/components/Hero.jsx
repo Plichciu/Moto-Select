@@ -19,7 +19,6 @@ function Hero() {
     <section className="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden">
       <div className="page-container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* LEWA */}
           <div>
             <p className="text-sm text-center lg:text-left text-gray-400 uppercase tracking-wide">
               Ogłoszenia samochodowe
@@ -40,9 +39,7 @@ function Hero() {
             </div>
           </div>
 
-          {/* PRAWA — KARUZELA */}
           <div className="relative h-[320px] md:h-[420px] flex items-center justify-center">
-            {/* glow */}
             <div className="absolute -inset-10 bg-purple-100 rounded-full blur-3xl opacity-50" />
 
             {cars.map((src, index) => (

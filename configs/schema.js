@@ -1,4 +1,4 @@
-import { integer, json, pgTable, serial, varchar } from "drizzle-orm/pg-core";
+import { integer, json, pgTable, serial, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const CarListing = pgTable("carLisiting", {
   id: serial("id").primaryKey(),
@@ -31,6 +31,7 @@ export const CarListing = pgTable("carLisiting", {
   userImageUrl: varchar("userImageUrl").default(
     "https://img.freepik.com/free-vector/user-circles-set_78370-4704.jpg?semt=ais_hybrid&w=740&q=80",
   ),
+  userId: integer("user_id").references(() => Users.id),
 });
 
 export const CarImages = pgTable("carImages", {
@@ -40,4 +41,41 @@ export const CarImages = pgTable("carImages", {
     .notNull()
     .references(() => CarListing.id),
   order: integer("order"),
+});
+
+
+export const Users = pgTable("users", {
+  id: serial("id").primaryKey(),
+
+  clerkUserId: varchar("clerk_user_id").notNull().unique(),
+
+  username: varchar("username").notNull(),
+
+  email: varchar("email").notNull(),
+
+  imageUrl: varchar("image_url"),
+
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+
+export const Features = pgTable("features", {
+  id: serial("id").primaryKey(),
+
+  name: varchar("name").notNull(),
+
+  label: varchar("label").notNull(),
+});
+
+
+export const ListingFeatures = pgTable("listing_features", {
+  id: serial("id").primaryKey(),
+
+  listingId: integer("listing_id")
+    .notNull()
+    .references(() => CarListing.id),
+
+  featureId: integer("feature_id")
+    .notNull()
+    .references(() => Features.id),
 });

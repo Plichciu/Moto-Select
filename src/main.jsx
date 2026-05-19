@@ -1,6 +1,5 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./home";
@@ -9,12 +8,12 @@ import { ClerkProvider } from "@clerk/clerk-react";
 import Profile from "./profile";
 import AddListing from "./add-listing";
 import { Toaster } from "./components/ui/sonner";
-import SearchByCategory from "./search/[category]";
-import SearchByOptions from "./search";
 import ListingDetail from "./listing-details/[id]";
 import SearchResults from "./search/SearchResults";
 import RequireAuth from "./Shared/RequiredAuth";
 import NotFound from "./Shared/NotFound";
+import { plPL } from "@clerk/localizations";
+import UserSync from "./Shared/UserSync";
 
 const router = createBrowserRouter([
   {
@@ -45,10 +44,7 @@ const router = createBrowserRouter([
     path: "/search",
     element: <SearchResults />,
   },
-  // {
-  //   path: "/search/:category",
-  //   element: <SearchResults />,
-  // },
+
   {
     path: "/search?query",
     element: <SearchResults />,
@@ -76,9 +72,14 @@ if (!PUBLISHABLE_KEY) {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+    <ClerkProvider
+      localization={plPL}
+      publishableKey={PUBLISHABLE_KEY}
+      afterSignOutUrl="/"
+    >
+      <UserSync />
       <RouterProvider router={router} />
       <Toaster />
     </ClerkProvider>
-  </StrictMode>
+  </StrictMode>,
 );

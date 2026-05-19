@@ -7,9 +7,9 @@ function CitySelect({ value, onChange, error }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isSelecting, setIsSelecting] = useState(false); // ✅ KLUCZ
+  const [isSelecting, setIsSelecting] = useState(false); 
 
-  // 🔄 sync z parenta
+
   useEffect(() => {
     if (value) {
       setQuery(value);
@@ -18,7 +18,7 @@ function CitySelect({ value, onChange, error }) {
   }, [value]);
 
   useEffect(() => {
-    // ⛔ NIE fetchuj po wyborze miasta
+   
     if (isSelecting) return;
 
     if (query.length < 2) {

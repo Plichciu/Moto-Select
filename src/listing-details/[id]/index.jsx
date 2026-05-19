@@ -15,7 +15,7 @@ import Specification from "../components/Specification";
 import OwnersDetail from "../components/OwnersDetail";
 import FinanacialCalculator from "../components/FinanacialCalculator";
 import MostSearchedCar from "@/components/MostSearchedCar";
-import MapBox from "../MapBox";
+import MapBox from "../components/MapBox";
 
 function ListingDetail() {
   const { id } = useParams();
@@ -56,7 +56,7 @@ function ListingDetail() {
             <Description carDetail={carDetail} />
             <Specification carDetail={carDetail} />
             <MapBox location={carDetail?.location} />
-            <Features features={carDetail?.features} />
+            <Features listingId={carDetail?.id} />
 
             <OwnersDetail carDetail={carDetail} />
 
@@ -72,7 +72,7 @@ function ListingDetail() {
           <div className="hidden lg:block lg:col-span-2 space-y-6">
             <ImageGallery carDetail={carDetail} />
             <Description carDetail={carDetail} />
-            <Features features={carDetail?.features} />
+            <Features listingId={carDetail?.id} />
             <FinanacialCalculator price={carDetail?.sellingPrice} />
           </div>
 
