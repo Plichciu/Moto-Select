@@ -104,62 +104,62 @@ const Category = [
   {
     id: 1,
     name: "SUV",
-    icon: "public/categoryIcons/suv.png",
+    icon: "/categoryIcons/suv.png",
   },
   {
     id: 5,
     name: "Kombi",
-    icon: "public/categoryIcons/kombi.png",
+    icon: "/categoryIcons/kombi.png",
   },
   {
     id: 2,
     name: "Sedan",
-    icon: "public/categoryIcons/sedan.png",
+    icon: "/categoryIcons/sedan.png",
   },
   {
     id: 3,
     name: "Hatchback",
-    icon: "public/categoryIcons/hatchback.png",
+    icon: "/categoryIcons/hatchback.png",
   },
   {
     id: 4,
     name: "Elektryczny",
-    icon: "public/categoryIcons/elektryczny.png",
+    icon: "/categoryIcons/elektryczny.png",
   },
   {
     id: 5,
     name: "Cabrio",
-    icon: "public/categoryIcons/cabrio.png",
+    icon: "/categoryIcons/cabrio.png",
   },
   {
     id: 5,
     name: "Hybryda",
-    icon: "public/categoryIcons/hybryda.png",
+    icon: "/categoryIcons/hybryda.png",
   },
   {
     id: 5,
     name: "Coupe",
-    icon: "public/categoryIcons/coupe.png",
+    icon: "/categoryIcons/coupe.png",
   },
   {
     id: 5,
     name: "Van",
-    icon: "public/categoryIcons/van.png",
+    icon: "/categoryIcons/van.png",
   },
   {
     id: 5,
     name: "Crossover",
-    icon: "public/categoryIcons/crossover.png",
+    icon: "/categoryIcons/crossover.png",
   },
   {
     id: 5,
     name: "Pickup",
-    icon: "public/categoryIcons/pickup.png",
+    icon: "/categoryIcons/pickup.png",
   },
   {
     id: 5,
     name: "Ciężarówka",
-    icon: "public/categoryIcons/tir.png",
+    icon: "/categoryIcons/tir.png",
   },
 ];
 

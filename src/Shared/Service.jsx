@@ -8,7 +8,7 @@ const FormatResult = (resp) => {
   const finalResult = [];
 
   resp.forEach((row) => {
-    const listing = row.carLisiting;
+    const listing = row.carListing;
     const image = row.carImages;
 
     if (!listing) return;

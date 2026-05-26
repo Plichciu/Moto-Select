@@ -28,6 +28,7 @@ function MyListing() {
 
     const resp = Service.FormatResult(result);
     console.log(resp);
+    console.log(user?.primaryEmailAddress?.emailAddress);
     setCarList(resp);
   };
 

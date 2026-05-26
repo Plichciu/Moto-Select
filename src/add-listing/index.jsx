@@ -74,9 +74,7 @@ function AddListing() {
     if (checked) {
       setFeaturesData((prev) => [...prev, featureId]);
     } else {
-      setFeaturesData((prev) =>
-        prev.filter((id) => id !== featureId)
-      );
+      setFeaturesData((prev) => prev.filter((id) => id !== featureId));
     }
   };
 
@@ -93,6 +91,17 @@ function AddListing() {
 
     setCarInfo(resp[0]);
     setFormData(resp[0]);
+
+    
+    const featureResult = await db
+      .select()
+      .from(ListingFeatures)
+      .where(eq(ListingFeatures.listingId, recordId));
+
+   
+    const featureIds = featureResult.map((item) => item.featureId);
+
+    setFeaturesData(featureIds);
   };
 
   /* ================= FORM ================= */
@@ -115,8 +124,7 @@ function AddListing() {
       const value = formData?.[item.name];
 
       if (value === undefined || value === null || value === "") {
-        newErrors[item.name] =
-          `Pole ${item.label.toLowerCase()} jest wymagane`;
+        newErrors[item.name] = `Pole ${item.label.toLowerCase()} jest wymagane`;
 
         break;
       }
@@ -173,6 +181,17 @@ function AddListing() {
             postedOn: moment().format("DD/MM/yyyy"),
           })
           .where(eq(CarListing.id, recordId));
+
+        await db
+          .delete(ListingFeatures)
+          .where(eq(ListingFeatures.listingId, recordId));
+
+        for (const featureId of featuresData) {
+          await db.insert(ListingFeatures).values({
+            listingId: recordId,
+            featureId,
+          });
+        }
 
         toast.success("Ogłoszenie zaktualizowane");
 
@@ -234,14 +253,11 @@ function AddListing() {
       <div className="page-container">
         <div className="mb-10">
           <h1 className="text-3xl md:text-4xl font-bold">
-            {mode === "edit"
-              ? "Edytuj ogłoszenie"
-              : "Dodaj nowe ogłoszenie"}
+            {mode === "edit" ? "Edytuj ogłoszenie" : "Dodaj nowe ogłoszenie"}
           </h1>
 
           <p className="text-gray-500 mt-2 max-w-2xl">
-            Uzupełnij poniższe informacje.
-            Pola oznaczone * są wymagane.
+            Uzupełnij poniższe informacje. Pola oznaczone * są wymagane.
           </p>
         </div>
 
@@ -249,16 +265,11 @@ function AddListing() {
           {/* ================= CAR DETAILS ================= */}
 
           <div>
-            <h2 className="font-semibold text-xl mb-8">
-              Specyfikacja
-            </h2>
+            <h2 className="font-semibold text-xl mb-8">Specyfikacja</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {carDetails.carDetails.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col gap-1"
-                >
+                <div key={index} className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
                     <span className="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
                       <IconField icon={item.icon} />
@@ -266,9 +277,7 @@ function AddListing() {
 
                     {item.label}
 
-                    {item.required && (
-                      <span className="text-red-500">*</span>
-                    )}
+                    {item.required && <span className="text-red-500">*</span>}
                   </label>
 
                   <div
@@ -276,9 +285,7 @@ function AddListing() {
                       relative rounded-xl border bg-white
                       transition focus-within:ring-2 focus-within:ring-primary
                       ${
-                        errors[item.name]
-                          ? "border-red-500"
-                          : "border-gray-200"
+                        errors[item.name] ? "border-red-500" : "border-gray-200"
                       }
                     `}
                   >
@@ -305,20 +312,11 @@ function AddListing() {
                       <CitySelect
                         value={formData?.[item.name]}
                         onChange={(data) => {
-                          handleInputChange(
-                            item.name,
-                            data.city
-                          );
+                          handleInputChange(item.name, data.city);
 
-                          handleInputChange(
-                            "latitude",
-                            data.lat
-                          );
+                          handleInputChange("latitude", data.lat);
 
-                          handleInputChange(
-                            "longitude",
-                            data.lon
-                          );
+                          handleInputChange("longitude", data.lon);
                         }}
                       />
                     ) : null}
@@ -339,22 +337,14 @@ function AddListing() {
           <Separator className="my-6" />
 
           <div>
-            <h2 className="font-medium text-xl my-6">
-              Cechy
-            </h2>
+            <h2 className="font-medium text-xl my-6">Cechy</h2>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {featuresList.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex gap-2 items-center"
-                >
+                <div key={item.id} className="flex gap-2 items-center">
                   <Checkbox
                     onCheckedChange={(value) =>
-                      handleFeatureChange(
-                        item.id,
-                        value
-                      )
+                      handleFeatureChange(item.id, value)
                     }
                     checked={featuresData.includes(item.id)}
                   />
@@ -376,9 +366,7 @@ function AddListing() {
             setLoader={setLoader}
             onHasImagesChange={setHasImages}
             onUploadFinished={() => {
-              toast.success(
-                "Ogłoszenie zostało dodane"
-              );
+              toast.success("Ogłoszenie zostało dodane");
 
               navigate("/profile");
             }}

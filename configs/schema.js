@@ -1,37 +1,123 @@
-import { integer, json, pgTable, serial, timestamp, varchar } from "drizzle-orm/pg-core";
+import {
+  integer,
+  numeric,
+  json,
+  pgTable,
+  serial,
+  timestamp,
+  varchar,
+} from "drizzle-orm/pg-core";
 
-export const CarListing = pgTable("carLisiting", {
+// export const CarListing = pgTable("carListing", {
+//   id: serial("id").primaryKey(),
+//   title: varchar("title"),
+//   tagline: varchar("tagline"),
+//   originalPrice: varchar("originalPrice"),
+//   sellingPrice: varchar("sellingPrice").notNull(),
+//   category: varchar("category").notNull(),
+//   condition: varchar("condition").notNull(),
+//   brand: varchar("brand").notNull(),
+//   model: varchar("model").notNull(),
+//   year: varchar("year").notNull(),
+//   driveType: varchar("driveType").notNull(),
+//   transmission: varchar("transmission").notNull(),
+//   fuelType: varchar("fuelType").notNull(),
+//   mileage: varchar("mileage").notNull(),
+//   engineSize: varchar("engineSize"),
+//   horsepower: varchar("horsepower"),
+//   color: varchar("color").notNull(),
+//   door: varchar("door").notNull(),
+//   offerType: varchar("offerType"),
+//   vin: varchar("vin"),
+//   location: varchar("location").notNull(),
+//   description: varchar("description").notNull(),
+//   features: json("features"),
+//   createdBy: varchar("createdBy").notNull(),
+//   postedOn: varchar("postedOn"),
+//   latitude: varchar("latitude"),
+//   longitude: varchar("longitude"),
+//   userImageUrl: varchar("userImageUrl").default(
+//     "https://img.freepik.com/free-vector/user-circles-set_78370-4704.jpg?semt=ais_hybrid&w=740&q=80",
+//   ),
+//   userId: integer("user_id").references(() => Users.id),
+// });
+
+export const CarListing = pgTable("carListing", {
   id: serial("id").primaryKey(),
+
   title: varchar("title"),
+
   tagline: varchar("tagline"),
-  originalPrice: varchar("originalPrice"),
-  sellingPrice: varchar("sellingPrice").notNull(),
+
+  originalPrice: numeric("originalPrice", {
+    precision: 12,
+    scale: 2,
+  }),
+
+  sellingPrice: numeric("sellingPrice", {
+    precision: 12,
+    scale: 2,
+  }).notNull(),
+
   category: varchar("category").notNull(),
+
   condition: varchar("condition").notNull(),
+
   brand: varchar("brand").notNull(),
+
   model: varchar("model").notNull(),
-  year: varchar("year").notNull(),
+
+  year: integer("year").notNull(),
+
   driveType: varchar("driveType").notNull(),
+
   transmission: varchar("transmission").notNull(),
+
   fuelType: varchar("fuelType").notNull(),
-  mileage: varchar("mileage").notNull(),
-  engineSize: varchar("engineSize"),
-  horsepower: varchar("horsepower"),
+
+  mileage: integer("mileage").notNull(),
+
+  engineSize: numeric("engineSize", {
+    precision: 3,
+    scale: 1,
+  }),
+
+  horsepower: integer("horsepower"),
+
   color: varchar("color").notNull(),
-  door: varchar("door").notNull(),
+
+  door: integer("door").notNull(),
+
   offerType: varchar("offerType"),
-  vin: varchar("vin"),
+
+  vin: varchar("vin").unique(),
+
   location: varchar("location").notNull(),
+
+  latitude: numeric("latitude", {
+    precision: 8,
+    scale: 4,
+  }),
+
+  longitude: numeric("longitude", {
+    precision: 8,
+    scale: 4,
+  }),
+
   description: varchar("description").notNull(),
-  features: json("features"),
-  createdBy: varchar("createdBy").notNull(),
+
   postedOn: varchar("postedOn"),
-  latitude: varchar("latitude"),
-  longitude: varchar("longitude"),
+
+
+  createdBy: varchar("createdBy").notNull(),
+
   userImageUrl: varchar("userImageUrl").default(
     "https://img.freepik.com/free-vector/user-circles-set_78370-4704.jpg?semt=ais_hybrid&w=740&q=80",
   ),
-  userId: integer("user_id").references(() => Users.id),
+
+  userId: integer("user_id")
+    .references(() => Users.id)
+    .notNull(),
 });
 
 export const CarImages = pgTable("carImages", {
@@ -42,7 +128,6 @@ export const CarImages = pgTable("carImages", {
     .references(() => CarListing.id),
   order: integer("order"),
 });
-
 
 export const Users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -58,7 +143,6 @@ export const Users = pgTable("users", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-
 export const Features = pgTable("features", {
   id: serial("id").primaryKey(),
 
@@ -66,7 +150,6 @@ export const Features = pgTable("features", {
 
   label: varchar("label").notNull(),
 });
-
 
 export const ListingFeatures = pgTable("listing_features", {
   id: serial("id").primaryKey(),
