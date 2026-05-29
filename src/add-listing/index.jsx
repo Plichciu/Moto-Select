@@ -6,9 +6,7 @@ import DropdownField from "./components/DropdownField";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-
 import { db } from "./../../configs";
-
 import {
   CarImages,
   CarListing,
@@ -16,20 +14,15 @@ import {
   ListingFeatures,
   Users,
 } from "./../../configs/schema";
-
 import TextAreaField from "./components/TextAreaField";
 import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
-
 import { BiLoaderAlt } from "react-icons/bi";
 import { toast } from "sonner";
-
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
-
 import moment from "moment";
 import { eq } from "drizzle-orm";
-
 import Service from "@/Shared/Service";
 import CitySelect from "./components/CitySelect";
 
@@ -162,6 +155,13 @@ function AddListing() {
 
     setLoader(true);
 
+    const currentUser = await db
+      .select()
+      .from(Users)
+      .where(eq(Users.clerkUserId, user.id));
+
+    const dbUser = currentUser[0];
+
     try {
       /* ================= UPDATE ================= */
 
@@ -203,13 +203,6 @@ function AddListing() {
       }
 
       /* ================= INSERT LISTING ================= */
-
-      const currentUser = await db
-        .select()
-        .from(Users)
-        .where(eq(Users.clerkUserId, user.id));
-
-      const dbUser = currentUser[0];
 
       const result = await db
         .insert(CarListing)

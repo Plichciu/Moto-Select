@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/clerk-react";
 import { db } from "./../../../configs";
-import { CarImages, CarListing } from "./../../../configs/schema";
+import {
+  CarImages,
+  CarListing,
+  ListingFeatures,
+} from "./../../../configs/schema";
 import { desc, eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -34,6 +38,10 @@ function MyListing() {
 
   const onDeleteListing = async (listingId) => {
     try {
+      await db
+        .delete(ListingFeatures)
+        .where(eq(ListingFeatures.listingId, listingId));
+
       await db.delete(CarImages).where(eq(CarImages.carListingId, listingId));
 
       await db.delete(CarListing).where(eq(CarListing.id, listingId));
