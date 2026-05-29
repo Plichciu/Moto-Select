@@ -71,7 +71,7 @@ function FinanceCalculator({ price }) {
       {/* RESULT */}
       {monthlyRate && (
         <div className="mt-6 p-4 bg-gray-100 rounded-lg text-center">
-          <p className="text-sm text-gray-600">Szacowana miesię</p>
+          <p className="text-sm text-gray-600">Szacowana miesięczna rata</p>
           <p className="text-3xl font-bold text-primary">{monthlyRate} PLN</p>
         </div>
       )}
