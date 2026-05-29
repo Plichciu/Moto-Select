@@ -14,6 +14,7 @@ import {
   CarListing,
   Features,
   ListingFeatures,
+  Users,
 } from "./../../configs/schema";
 
 import TextAreaField from "./components/TextAreaField";
@@ -92,13 +93,11 @@ function AddListing() {
     setCarInfo(resp[0]);
     setFormData(resp[0]);
 
-    
     const featureResult = await db
       .select()
       .from(ListingFeatures)
       .where(eq(ListingFeatures.listingId, recordId));
 
-   
     const featureIds = featureResult.map((item) => item.featureId);
 
     setFeaturesData(featureIds);
@@ -179,6 +178,7 @@ function AddListing() {
             userImageUrl: user?.imageUrl,
 
             postedOn: moment().format("DD/MM/yyyy"),
+            userId: dbUser.id,
           })
           .where(eq(CarListing.id, recordId));
 
@@ -204,6 +204,13 @@ function AddListing() {
 
       /* ================= INSERT LISTING ================= */
 
+      const currentUser = await db
+        .select()
+        .from(Users)
+        .where(eq(Users.clerkUserId, user.id));
+
+      const dbUser = currentUser[0];
+
       const result = await db
         .insert(CarListing)
         .values({
@@ -216,13 +223,13 @@ function AddListing() {
           userImageUrl: user?.imageUrl,
 
           postedOn: moment().format("DD/MM/yyyy"),
+
+          userId: dbUser.id,
         })
         .returning({ id: CarListing.id });
 
       if (result) {
         const listingId = result[0]?.id;
-
-        /* ================= SAVE FEATURES ================= */
 
         for (const featureId of featuresData) {
           await db.insert(ListingFeatures).values({

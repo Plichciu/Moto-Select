@@ -8,117 +8,41 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-// export const CarListing = pgTable("carListing", {
-//   id: serial("id").primaryKey(),
-//   title: varchar("title"),
-//   tagline: varchar("tagline"),
-//   originalPrice: varchar("originalPrice"),
-//   sellingPrice: varchar("sellingPrice").notNull(),
-//   category: varchar("category").notNull(),
-//   condition: varchar("condition").notNull(),
-//   brand: varchar("brand").notNull(),
-//   model: varchar("model").notNull(),
-//   year: varchar("year").notNull(),
-//   driveType: varchar("driveType").notNull(),
-//   transmission: varchar("transmission").notNull(),
-//   fuelType: varchar("fuelType").notNull(),
-//   mileage: varchar("mileage").notNull(),
-//   engineSize: varchar("engineSize"),
-//   horsepower: varchar("horsepower"),
-//   color: varchar("color").notNull(),
-//   door: varchar("door").notNull(),
-//   offerType: varchar("offerType"),
-//   vin: varchar("vin"),
-//   location: varchar("location").notNull(),
-//   description: varchar("description").notNull(),
-//   features: json("features"),
-//   createdBy: varchar("createdBy").notNull(),
-//   postedOn: varchar("postedOn"),
-//   latitude: varchar("latitude"),
-//   longitude: varchar("longitude"),
-//   userImageUrl: varchar("userImageUrl").default(
-//     "https://img.freepik.com/free-vector/user-circles-set_78370-4704.jpg?semt=ais_hybrid&w=740&q=80",
-//   ),
-//   userId: integer("user_id").references(() => Users.id),
-// });
-
 export const CarListing = pgTable("carListing", {
   id: serial("id").primaryKey(),
-
   title: varchar("title"),
-
   tagline: varchar("tagline"),
-
-  originalPrice: numeric("originalPrice", {
-    precision: 12,
-    scale: 2,
-  }),
-
-  sellingPrice: numeric("sellingPrice", {
-    precision: 12,
-    scale: 2,
-  }).notNull(),
-
+  originalPrice: varchar("originalPrice"),
+  sellingPrice: varchar("sellingPrice").notNull(),
   category: varchar("category").notNull(),
-
   condition: varchar("condition").notNull(),
-
   brand: varchar("brand").notNull(),
-
   model: varchar("model").notNull(),
-
-  year: integer("year").notNull(),
-
+  year: varchar("year").notNull(),
   driveType: varchar("driveType").notNull(),
-
   transmission: varchar("transmission").notNull(),
-
   fuelType: varchar("fuelType").notNull(),
-
-  mileage: integer("mileage").notNull(),
-
-  engineSize: numeric("engineSize", {
-    precision: 3,
-    scale: 1,
-  }),
-
-  horsepower: integer("horsepower"),
-
+  mileage: varchar("mileage").notNull(),
+  engineSize: varchar("engineSize"),
+  horsepower: varchar("horsepower"),
   color: varchar("color").notNull(),
-
-  door: integer("door").notNull(),
-
+  door: varchar("door").notNull(),
   offerType: varchar("offerType"),
-
-  vin: varchar("vin").unique(),
-
+  vin: varchar("vin"),
   location: varchar("location").notNull(),
-
-  latitude: numeric("latitude", {
-    precision: 8,
-    scale: 4,
-  }),
-
-  longitude: numeric("longitude", {
-    precision: 8,
-    scale: 4,
-  }),
-
   description: varchar("description").notNull(),
-
-  postedOn: varchar("postedOn"),
-
-
+  features: json("features"),
   createdBy: varchar("createdBy").notNull(),
-
+  postedOn: varchar("postedOn"),
+  latitude: varchar("latitude"),
+  longitude: varchar("longitude"),
   userImageUrl: varchar("userImageUrl").default(
     "https://img.freepik.com/free-vector/user-circles-set_78370-4704.jpg?semt=ais_hybrid&w=740&q=80",
   ),
-
-  userId: integer("user_id")
-    .references(() => Users.id)
-    .notNull(),
+  userId: integer("user_id").references(() => Users.id),
 });
+
+
 
 export const CarImages = pgTable("carImages", {
   id: serial("id").primaryKey(),
