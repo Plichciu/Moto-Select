@@ -12,7 +12,6 @@ export default function SearchBar({ closeSearch }) {
     if (!query.trim()) return;
 
     navigate(`/search?query=${encodeURIComponent(query)}`);
-  
 
     setQuery("");
     closeSearch();

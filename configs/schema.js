@@ -42,8 +42,6 @@ export const CarListing = pgTable("carListing", {
   userId: integer("user_id").references(() => Users.id),
 });
 
-
-
 export const CarImages = pgTable("carImages", {
   id: serial("id").primaryKey(),
   imageUrl: varchar("imageUrl").notNull(),

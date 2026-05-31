@@ -1,7 +1,6 @@
 import { SignInButton, useUser } from "@clerk/clerk-react";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 function RequireAuth({ children }) {
   const { user, isLoaded } = useUser();
@@ -11,7 +10,7 @@ function RequireAuth({ children }) {
       <div>
         <Header />
         <div className="min-h-[60vh] flex items-center justify-center">
-          <p className="text-gray-500">Loading...</p>
+          <p className="text-gray-500">Ładowanie...</p>
         </div>
       </div>
     );
@@ -35,7 +34,6 @@ function RequireAuth({ children }) {
     );
   }
 
-  // ✅ ZALOGOWANY
   return children;
 }
 

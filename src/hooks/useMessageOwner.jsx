@@ -51,7 +51,6 @@ export function useMessageOwner(carDetail) {
         }
       }
 
-      // CHANNEL
       const channel = await Service.CreateSendBirdChannel(
         [userId, ownerUserId],
         carDetail?.userName,
@@ -59,7 +58,6 @@ export function useMessageOwner(carDetail) {
 
       console.log("CHANNEL:", channel);
 
-      // przejście do konkretnego chatu
       navigation("/profile", {
         state: {
           tab: "inbox",

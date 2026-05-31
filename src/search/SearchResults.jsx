@@ -20,7 +20,6 @@ export default function SearchResults() {
   const [loading, setLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
-
   const query = searchParams.get("query");
   const make = searchParams.get("make");
   const condition = searchParams.get("condition");
@@ -126,7 +125,6 @@ export default function SearchResults() {
       }
 
       // KONIE
-
       if (minHp) {
         filters.push(sql`${CarListing.horsepower}::int >= ${minHp}`);
       }
@@ -136,7 +134,6 @@ export default function SearchResults() {
       }
 
       // NAPĘD
-
       if (driveType) {
         filters.push(eq(CarListing.driveType, driveType));
       }

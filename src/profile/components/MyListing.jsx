@@ -11,7 +11,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Service from "@/Shared/Service";
 import CarItem from "@/components/CarItem";
-import { FaTrashAlt } from "react-icons/fa";
 import { AlertDialogDemo } from "./AlertDialogDemo";
 function MyListing() {
   const { user } = useUser();

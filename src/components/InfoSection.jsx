@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const images = [
-  "/cars/car-1.png",
-  "/cars/car-2.png"
-];
+const images = ["/cars/car-1.png", "/cars/car-2.png"];
 
 function InfoSection() {
   const [index, setIndex] = useState(0);
@@ -11,14 +9,13 @@ function InfoSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 4000); 
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-      
       {/* LEFT – IMAGE SLIDER */}
       <div className="relative w-full h-[420px] overflow-hidden rounded-2xl shadow-xl">
         {images.map((src, i) => (
@@ -42,13 +39,16 @@ function InfoSection() {
         </h2>
 
         <p className="text-gray-600 mb-6 leading-relaxed">
-          Przeglądaj tysiące ogłoszeń, porównuj oferty i wybieraj
-          najlepsze samochody bez stresu i ukrytych kosztów.
+          Przeglądaj tysiące ogłoszeń, porównuj oferty i wybieraj najlepsze
+          samochody bez stresu i ukrytych kosztów.
         </p>
 
-        <button className="bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition">
+        <Link
+          to="/search"
+          className="bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition"
+        >
           Przeglądaj oferty
-        </button>
+        </Link>
       </div>
     </section>
   );

@@ -1,12 +1,8 @@
 import { useEffect } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { eq } from "drizzle-orm";
-
-
-
 import { db } from "./../../configs";
 import { Users } from "./../../configs/schema";
-
 
 function UserSync() {
   const { user } = useUser();

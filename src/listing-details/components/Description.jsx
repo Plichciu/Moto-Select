@@ -1,16 +1,18 @@
-import React from 'react'
+import React from "react";
 
-function Description({carDetail}) {
+function Description({ carDetail }) {
   return (
-   <div>
-       {carDetail?.description?  <div className='p-10 rounded-xl bg-white shadow-md mt-6 border'>
-            <h2 className='my-2 font-medium text-2xl'>Opis</h2>
-            <p>{carDetail?.description}</p>
-        </div>:
-        <div className='w-full h-[100px] mt-7 bg-slate-200 animate-pulse rounded-xl'>
-        </div>}
+    <div>
+      {carDetail?.description ? (
+        <div className="p-10 rounded-xl bg-white shadow-md mt-6 border">
+          <h2 className="my-2 font-medium text-2xl">Opis</h2>
+          <p>{carDetail?.description}</p>
+        </div>
+      ) : (
+        <div className="w-full h-[100px] mt-7 bg-slate-200 animate-pulse rounded-xl"></div>
+      )}
     </div>
-  )
+  );
 }
 
-export default Description
+export default Description;

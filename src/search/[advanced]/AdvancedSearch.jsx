@@ -63,7 +63,7 @@ function AdvancedSearch() {
         onClick={onSearch}
         className="bg-primary text-white rounded-lg px-4 py-2 md:col-span-4"
       >
-        Search
+        Szukaj
       </button>
     </div>
   );

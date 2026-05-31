@@ -41,45 +41,7 @@ const FormatResult = (resp) => {
   return finalResult;
 };
 
-/* =====================================================
-   SENDBIRD
-===================================================== */
-
-// const CreateSendBirdUser = (userId, nickName, profileUrl) => {
-//   return axios.post(
-//     `https://api-${SendBirdApplicationId}.sendbird.com/v3/users`,
-//     {
-//       user_id: userId,
-//       nickname: nickName,
-//       profile_url: profileUrl,
-//       issue_access_token: false,
-//     },
-//     {
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Api-Token": SendBirdApiToken,
-//       },
-//     }
-//   );
-// };
-
-// const CreateSendBirdChannel = (users, title) => {
-//   return axios.post(
-//     `https://api-${SendBirdApplicationId}.sendbird.com/v3/group_channels`,
-//     {
-//       user_ids: users,
-//       is_distinct: true,
-//       name: title,
-//       operator_ids: [users[0]],
-//     },
-//     {
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Api-Token": SendBirdApiToken,
-//       },
-//     }
-//   );
-// };
+// SENDBIRD
 
 const CreateSendBirdUser = async (userId, nickName, profileUrl) => {
   try {
@@ -101,7 +63,6 @@ const CreateSendBirdUser = async (userId, nickName, profileUrl) => {
 
     return response.data;
   } catch (e) {
-    // User już istnieje
     if (e?.response?.data?.message?.includes("violates unique constraint")) {
       console.log("User już istnieje");
 

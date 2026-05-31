@@ -7,7 +7,6 @@ import { GroupChannelList } from "@sendbird/uikit-react/GroupChannelList";
 
 function Inbox() {
   const [stringSet] = useState({
-   
     MESSAGE_INPUT__PLACE_HOLDER: "Napisz wiadomość...",
   });
 

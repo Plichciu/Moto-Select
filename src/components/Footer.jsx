@@ -53,7 +53,8 @@ function Footer() {
       <div className="border-t">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
           <span>
-            © {new Date().getFullYear()} Moto-Select. Wszelkie prawa zastrzeżone.
+            © {new Date().getFullYear()} Moto-Select. Wszelkie prawa
+            zastrzeżone.
           </span>
 
           <div className="flex gap-6 mt-3 md:mt-0">

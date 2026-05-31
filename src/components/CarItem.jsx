@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Separator } from "./ui/separator";
 import { LuFuel } from "react-icons/lu";
 import { TbBrandSpeedtest, TbCalendar } from "react-icons/tb";
-import { GiGearStickPattern } from "react-icons/gi";
 import { MdOpenInNew } from "react-icons/md";
 import { BiLoaderAlt } from "react-icons/bi";
-import { Link, useParams } from "react-router-dom";
-import { FaCalendar } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 function CarItem({ car }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 

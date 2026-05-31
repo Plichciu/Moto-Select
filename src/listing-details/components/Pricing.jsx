@@ -7,8 +7,8 @@ function Pricing({ carDetail }) {
 
   return (
     <div className="p-10 rounded-xl border shadow-md">
+      
       <p>Cena</p>
-
       <h2 className="font-bold text-4xl">{carDetail?.sellingPrice} zł</h2>
 
       <Button

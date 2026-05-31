@@ -7,8 +7,7 @@ function CitySelect({ value, onChange, error }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isSelecting, setIsSelecting] = useState(false); 
-
+  const [isSelecting, setIsSelecting] = useState(false);
 
   useEffect(() => {
     if (value) {
@@ -18,7 +17,6 @@ function CitySelect({ value, onChange, error }) {
   }, [value]);
 
   useEffect(() => {
-   
     if (isSelecting) return;
 
     if (query.length < 2) {
@@ -60,7 +58,7 @@ function CitySelect({ value, onChange, error }) {
       <Input
         value={query}
         onChange={(e) => {
-          setIsSelecting(false); // ✍️ user ZACZYNA pisać
+          setIsSelecting(false);
           setQuery(e.target.value);
         }}
         placeholder="Wpisz miasto"
@@ -85,7 +83,7 @@ function CitySelect({ value, onChange, error }) {
               <div
                 key={index}
                 onClick={() => {
-                  setIsSelecting(true); // 🔒 BLOKUJ FETCH
+                  setIsSelecting(true);
                   setQuery(city);
                   setResults([]);
 

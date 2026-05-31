@@ -46,7 +46,7 @@ const iconMap = {
   FaTags: <FaTags />,
   FaFileAlt: <FaFileAlt />,
   FaLocationDot: <FaLocationDot />,
-  FaHorseHead: <FaHorseHead />
+  FaHorseHead: <FaHorseHead />,
 };
 function IconField({ icon }) {
   return (

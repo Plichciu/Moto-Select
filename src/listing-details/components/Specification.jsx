@@ -5,9 +5,7 @@ import React from "react";
 function Specification({ carDetail }) {
   return (
     <div className="mt-10 bg-white rounded-xl border shadow-sm">
-      <h2 className="px-6 py-4 border-b font-semibold text-xl">
-        Specifications
-      </h2>
+      <h2 className="px-6 py-4 border-b font-semibold text-xl">Sepcyfikacja</h2>
 
       {!carDetail ? (
         <div className="p-6">
